@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{/images/favicon.ico}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/elements-style.css}">
+
+    <script th:src="@{/js/custom-components.js}" type="module" defer></script>
+    <script th:src="@{${attributes.mainScript}}" type="module" defer></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <title th:text="${attributes.title}"></title>
+</head>
+<body>
+
+<header-component></header-component>
+
+<div id="container" class="container">
+    <h1 id="elementName">Groups</h1>
+    <div class="element-container">
+        <div class="button-container">
+            <button th:if="${attributes.elementType} == 'deck'" class="back-button" id="backButton">Back</button>
+            <button th:if="${attributes.elementType} == 'group'" class="dummy-button">Dummy</button>
+            <button class="add-element-button" id="addElementButton" th:text="${attributes.buttonText}"></button>
+        </div>
+
+        <div class="element-list" id="elementList">
+
+        </div>
+
+        <confirm-modal-window></confirm-modal-window>
+    </div>
+</div>
+
+<footer-component></footer-component>
+
+</body>
+</html>

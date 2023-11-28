@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{/images/favicon.ico}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/flash-cards-style.css}">
+
+    <script th:src="@{/js/custom-components.js}" type="module" defer></script>
+    <script th:src="@{/js/flash-cards.js}" type="module" defer></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <title> Flash-Cards</title>
+</head>
+<body>
+
+<header-component></header-component>
+
+<div class="container">
+    <h1 id="elementName"></h1>
+    <h3 id="elementsCount"></h3>
+    <div class="element-container">
+        <div class="button-container">
+            <div>
+                <button class="back-button" id="backButton">Back</button>
+            </div>
+            <div>
+                <button class="add-element-button" id="learnButton">Learn flash-cards</button>
+                <button class="add-element-button" id="addElementButton">Add flash-card</button>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th class="actions-column">•••</th>
+                <th class="number-column">№</th>
+                <th>Front side</th>
+                <th>Back side</th>
+                <th class="example-column">Examples</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<confirm-modal-window></confirm-modal-window>
+
+<footer-component></footer-component>
+
+</body>
+</html>

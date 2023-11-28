@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{/images/favicon.ico}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/learn-style.css}">
+
+    <script th:src="@{/js/custom-components.js}" type="module" defer></script>
+    <script th:src="@{/js/learn.js}" type="module" defer></script>
+
+    <title>Learn Flash-Cards</title>
+
+</head>
+<body>
+
+<header-component></header-component>
+
+<div id="container" class="container">
+    <div id="parametersContainer" class="form-container">
+        <h2>Choose learn parameters</h2>
+        <form id="parametersForm">
+            <p>Learn mode:</p>
+            <div id="wordsMode">
+                <div>
+                    <label>
+                        <input type="radio" name="mode" value="ALL_WORDS" checked> All words
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="radio" name="mode" value="UNSTUDIED_WORDS"> Unstudied only
+                    </label>
+                </div>
+                <br>
+            </div>
+
+            <p>Words sort:</p>
+            <div id="wordsSort">
+                <div>
+                    <label>
+                        <input id="alphabeticButton" type="radio" name="sort" value="ALPHABETIC" checked> Alphabetic
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input id="randomButton" type="radio" name="sort" value="RANDOM"> Random
+                    </label>
+                </div>
+                <br>
+            </div>
+
+            <p id="wordsOrderText">Words order:</p>
+            <div id="wordsOrder">
+                <div>
+                    <label>
+                        <input type="radio" name="order" value="FORWARD" checked> Forward
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="radio" name="order" value="BACKWARD"> Backward
+                    </label>
+                </div>
+                <br>
+            </div>
+
+            <p>Learn options:</p>
+            <div id="learnOption">
+                <label>
+                    <input type="checkbox" name="option" value="REVERSE"> Reverse flash-cards
+                </label>
+                <br>
+            </div>
+            <input type="submit" value="Start!">
+        </form>
+    </div>
+
+    <div id="flashcardContainer" class="flashcard-container">
+        <div id="flashcard" class="flashcard">
+            <div id="front" class="front">
+                <h2 id="frontText"></h2>
+            </div>
+            <div id="back" class="back">
+                <div>
+                    <h2 id="backText"></h2>
+                </div>
+                <br>
+                <div id="examplesBlock"></div>
+            </div>
+        </div>
+        <div class="button-container">
+            <div>
+                <button id="stopButton" class="stop-button">Finish</button>
+                <button class="dummy-button">Dummy</button>
+            </div>
+            <div>
+                <button id="prevButton" class="prev-button">&#9664;</button>
+                <button id="nextButton" class="next-button">&#9654;</button>
+            </div>
+            <div id="statsButtons">
+                <button id="cancelButton" class="cancel-button">&#10008;</button>
+                <button id="confirmButton" class="confirm-button">&#10003;</button>
+            </div>
+        </div>
+        <div class="info-container">
+            <div>
+                <h4 id="flashcardCounter"></h4>
+            </div>
+            <div>
+                <h4 id="deckName"></h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer-component></footer-component>
+
+</body>
+</html>

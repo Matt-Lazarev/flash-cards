@@ -1,0 +1,15 @@
+.container {
+    flex: 1;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}

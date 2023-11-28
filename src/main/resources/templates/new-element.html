@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{/images/favicon.ico}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/new-element-style.css}">
+
+    <script th:src="@{/js/custom-components.js}" type="module" defer></script>
+    <script th:src="@{${attributes.mainScript}}" type="module" defer></script>
+
+    <title th:text="${attributes.title}"></title>
+
+</head>
+<body>
+
+<header-component></header-component>
+
+<div id="container" class="container">
+    <div class="form-container">
+        <form id="newElementForm" method="post">
+
+
+            <th:block th:if="${#sets.contains(attributes.defaultElementTypes, attributes.elementType)}">
+                <span class="error" id="nameError"></span>
+                <label for="elementName" th:text="${attributes.nameLabelText}"></label>
+                <input type="text" id="elementName" name="name" required>
+
+                <span class="error" id="descriptionError"></span>
+                <label for="elementDescription" th:text="${attributes.descriptionLabelText}"></label>
+                <textarea id="elementDescription" name="description"></textarea>
+
+                <th:block th:if="${attributes.elementType == 'deck#add'}">
+                    <div>
+                        <label for="file" class="file-upload" th:text="${attributes.fileLabelText}"></label>
+                        <input id="file" type="file"/>
+                        <div class="select-file-container">
+                            <button id="fileButton">Choose</button>
+                            <span id="selectedFile">No file selected</span>
+                        </div>
+                    </div>
+                </th:block>
+            </th:block>
+
+            <th:block th:if="${attributes.elementType == 'flashCard'}">
+                <label for="frontSideInput" th:text="${attributes.frontSideText}"></label>
+                <input type="text" id="frontSideInput" name="frontSide" required>
+
+                <label for="backSideInput" th:text="${attributes.backSideText}"></label>
+                <input type="text" id="backSideInput" name="backSide" required>
+
+                <label for="examplesInput" th:text="${attributes.examplesText}"></label>
+                <textarea id="examplesInput" name="examplesText"></textarea>
+            </th:block>
+
+            <input type="submit" th:value="${attributes.submitText}">
+        </form>
+    </div>
+</div>
+
+<footer-component></footer-component>
+
+</body>
+</html>

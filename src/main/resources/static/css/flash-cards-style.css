@@ -1,0 +1,120 @@
+h3 {
+    text-align: center;
+}
+
+table {
+    --border: 1px solid black;
+    border-radius: 5px;
+
+    border-spacing: 0;
+    border-collapse: separate;
+    border: var(--border);
+    overflow: hidden;
+}
+
+th, td {
+    padding: 8px;
+    margin: 0;
+    max-width: 100px;
+}
+
+th {
+    text-align: center;
+    background-color: #ccc;
+}
+
+table th:not(:last-child),
+table td:not(:last-child) {
+    border-right: 1px solid black;
+}
+
+table > thead > tr:not(:last-child) > th,
+table > thead > tr:not(:last-child) > td,
+table > tbody > tr:not(:last-child) > th,
+table > tbody > tr:not(:last-child) > td,
+table > tfoot > tr:not(:last-child) > th,
+table > tfoot > tr:not(:last-child) > td,
+table > tr:not(:last-child) > td,
+table > tr:not(:last-child) > th,
+table > thead:not(:last-child),
+table > tbody:not(:last-child),
+table > tfoot:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+.example-column {
+    width: 40%;
+    max-width: 200px;
+}
+
+.example-td {
+    white-space: pre-line;
+}
+
+.actions-column {
+    width: 2%;
+}
+
+.number-column {
+    width: 2%;
+}
+
+#newWordButton {
+    float: right;
+}
+
+.container {
+    margin: 20px auto 0;
+}
+
+.element-container {
+    width: 800px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu {
+    width: 60px;
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin: 5px 0 0;
+}
+
+.meatball-menu:hover .menu, .menu:hover {
+    cursor: pointer;
+    display: block;
+    transform: translate(63px, -25px);
+}
+
+.button-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.back-button {
+    margin-left: 0;
+}
+
+#learnButton, #addElementButton {
+    width: 180px;
+}

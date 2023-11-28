@@ -1,0 +1,49 @@
+.container {
+    flex: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.element-container {
+    width: 800px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.element-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.element-card {
+    height: 150px;
+    width: 150px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    margin: 14px;
+}
+
+.element-card h3 {
+    margin: 0 0 15px;
+}
+
+.element-count {
+    position: relative;
+}
+
+h3 {
+    margin: 0 auto;
+}
+
+.element-card p {
+    margin: 0;
+}
