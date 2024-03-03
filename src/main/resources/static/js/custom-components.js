@@ -90,7 +90,7 @@ class Footer extends HTMLElement {
         this.innerHTML =
         `
         <footer>
-            <p>© 2023 Lazarev</p>
+            <p>© ${new Date().getFullYear()} Lazarev</p>
         </footer>
         `;
     }

@@ -26,7 +26,7 @@ public class DeckDtoValidator implements Validator<DeckDto> {
         errors.putAll(isValidElementName(name));
         errors.putAll(isValidElementDescription(description));
 
-        if (errors.size() != 0) {
+        if (!errors.isEmpty()) {
             throw new ValidationException(errors);
         }
     }

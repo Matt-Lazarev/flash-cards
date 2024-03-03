@@ -46,10 +46,10 @@
 
             <th:block th:if="${attributes.elementType == 'flashCard'}">
                 <label for="frontSideInput" th:text="${attributes.frontSideText}"></label>
-                <input type="text" id="frontSideInput" name="frontSide" required>
+                <textarea id="frontSideInput" name="frontSide" required></textarea>
 
                 <label for="backSideInput" th:text="${attributes.backSideText}"></label>
-                <input type="text" id="backSideInput" name="backSide" required>
+                <textarea  id="backSideInput" name="backSide" required></textarea>
 
                 <label for="examplesInput" th:text="${attributes.examplesText}"></label>
                 <textarea id="examplesInput" name="examplesText"></textarea>

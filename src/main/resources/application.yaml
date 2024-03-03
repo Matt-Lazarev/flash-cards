@@ -27,7 +27,7 @@ spring:
 jwt:
   config:
     secret: 'YXNkZ2pwdWh2Ym56cG9pbndiZ3BpcnVnYm5lYW9zZGc='
-    tokenExpirationMs: 18000000
+    tokenExpirationMs: 36000000
 #    tokenExpirationMs: 30000
 
 flash-card:

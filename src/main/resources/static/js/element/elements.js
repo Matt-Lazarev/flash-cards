@@ -4,8 +4,6 @@ import {openConfirmModalWindow} from "../confirm-modal-window.js";
 const elementList = document.getElementById("elementList");
 
 export function showElements(data, urls, deleteElementAction, downloadDocumentAction) {
-    fixAlignment();
-
     if (data.length === 0) {
         const header = document.createElement("h3");
         header.textContent = 'There are no elements, use button above to add';
@@ -18,12 +16,14 @@ export function showElements(data, urls, deleteElementAction, downloadDocumentAc
 
         newElementCard.childNodes[1].id = `elementCard-${newElement.id}`
 
+        let elementNameNode;
         let elementDescriptionNode;
         let elementCountNode;
         newElementCard.childNodes[1].childNodes.forEach(node => {
             switch (node.tagName) {
                 case 'H3':
                     node.textContent = newElement.name;
+                    elementNameNode = node;
                     break;
                 case 'P':
                     if(node.classList.contains('element-description')){
@@ -37,7 +37,7 @@ export function showElements(data, urls, deleteElementAction, downloadDocumentAc
                     break;
             }
         });
-        fixAlignment(elementDescriptionNode, elementCountNode);
+        fixAlignment(elementNameNode, elementDescriptionNode, elementCountNode);
 
         const menu = document.querySelector(`#${newElementCard.childNodes[1].id} .meatball-menu`);
         newElementCard.addEventListener('click', (event) => {
@@ -76,9 +76,14 @@ export function showNoElementsMessage() {
     elementList.appendChild(header);
 }
 
-function fixAlignment(upperElement, lowerElement){
-    if(upperElement && lowerElement){
+function fixAlignment(upperElement, middleElement, lowerElement){
+    if(upperElement && middleElement && lowerElement){
         const upperElementHeight = upperElement.clientHeight;
-        lowerElement.style.bottom = (-68 + upperElementHeight) + "px"
+        const middleElementHeight = middleElement.clientHeight;
+        lowerElement.style.bottom = (-100 + upperElementHeight + middleElementHeight) + "px"
+    }
+    else if(upperElement && lowerElement){
+        const upperElementHeight = upperElement.clientHeight;
+        lowerElement.style.bottom = (-70 + upperElementHeight) + "px"
     }
 }

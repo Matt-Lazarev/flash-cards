@@ -69,9 +69,11 @@ function addFlashCardsInTable(flashCards){
         numberCell.textContent = (flashCardNumber++).toString();
 
         const wordCell = document.createElement('td');
+        wordCell.classList.add('example-td');
         wordCell.textContent = flashCard.frontSide;
 
         const translateCell = document.createElement('td');
+        translateCell.classList.add('example-td');
         translateCell.textContent = flashCard.backSide;
 
         const examplesCell = document.createElement('td');

@@ -56,6 +56,16 @@ form {
     display: none;
 }
 
+#backText p, #examplesBlock p {
+    margin-bottom: 0;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#examplesBlock p {
+    font-size: 18px;
+}
+
 .button-container button {
     height: 40px;
     margin: 10px;

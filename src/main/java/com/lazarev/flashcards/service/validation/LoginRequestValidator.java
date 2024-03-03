@@ -30,7 +30,7 @@ public class LoginRequestValidator implements Validator<AuthRequest> {
                         () ->   errors.put("username", "User does not exist")
                 );
 
-        if (errors.size() != 0) {
+        if (!errors.isEmpty()) {
             throw new ValidationException(errors);
         }
     }

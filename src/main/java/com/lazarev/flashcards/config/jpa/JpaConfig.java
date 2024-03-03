@@ -54,3 +54,4 @@ public class JpaConfig {
         return () -> List.of(new ClassImportIntegrator(dtos));
     }
 }
+ // in the previous lesson

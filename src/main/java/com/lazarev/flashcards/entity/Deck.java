@@ -29,6 +29,7 @@ public class Deck {
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     private Group group;
 
+    @OrderBy("frontSide")
     @OneToMany(mappedBy = "deck", cascade = CascadeType.ALL)
     private List<FlashCard> flashCards = new ArrayList<>();
 

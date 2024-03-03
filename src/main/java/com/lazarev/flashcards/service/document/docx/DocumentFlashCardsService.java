@@ -27,6 +27,7 @@ public class DocumentFlashCardsService {
         return docxDocumentCreator.create(deck.getName(), flashCards);
     }
 
+    //TODO FIX sort in batch download
     public DocumentDto createZipDocumentFromGroup(Integer groupId){
         GroupDecksDto groupDecks = deckService.getGroupFlashCardsByGroupId(groupId);
         List<DeckDto> decks = groupDecks.decks();

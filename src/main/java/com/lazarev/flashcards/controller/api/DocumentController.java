@@ -43,7 +43,7 @@ public class DocumentController {
                 .body(document.content());
     }
 
-    @PostMapping(value = "parse", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/parse", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Validate(DeckDtoValidator.class)
     @PreAuthorize("@userAccessChecker.checkGroup(#deckDto.getGroupId())")
     public ResponseEntity<OperationResponse> createDeckFromFile(@ModelAttribute DeckDto deckDto,

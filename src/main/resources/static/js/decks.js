@@ -18,15 +18,16 @@ backButton.addEventListener('click', () => {
     urlRoute('/groups');
 });
 
+const elementName = document.getElementById("elementName");
 function showDecks() {
     deckHttpClient.getAllDecksByGroupId(groupId)
         .then(data => {
+            elementName.textContent = data.groupName;
+
             if (data.decks.length === 0) {
                 showNoElementsMessage();
                 return;
             }
-            const elementName = document.getElementById("elementName");
-            elementName.textContent = data.groupName;
 
             const urls = {
                 clickElementUrl: `/groups/${groupId}/decks/{id}/flash-cards`,

@@ -156,16 +156,20 @@ function showFlashCard(){
     }
 
     frontSideText.textContent = flashCard.frontSide;
-    backSideText.textContent = flashCard.backSide;
-    if(flashCard.examples){
 
+    const baskSideTexts = flashCard.backSide.split('\n');
+    baskSideTexts.forEach(text => {
+        const newTextP = document.createElement('p');
+        newTextP.textContent = text;
+        backSideText.appendChild(newTextP);
+    })
+
+    if(flashCard.examples){
         const examples = flashCard.examples.split('\n');
-        console.log(flashCard.examples)
-        console.log(examples)
         examples.forEach(example => {
-            const newExampleH3 = document.createElement('h3');
-            newExampleH3.textContent = example;
-            backSideExamples.appendChild(newExampleH3);
+            const newExampleP = document.createElement('p');
+            newExampleP.textContent = example;
+            backSideExamples.appendChild(newExampleP);
         })
     }
 }
@@ -174,6 +178,7 @@ function prepareForNextFlashCard(flashCardCounter){
     isFrontSideShown = true;
     frontSide.style.display = 'flex';
     backSide.style.display = 'none';
+    backSideText.innerHTML = "";
     backSideExamples.innerHTML = "";
     nextFlashCardIndex = flashCardCounter;
     setFlashCardCounter(flashCardCounter)

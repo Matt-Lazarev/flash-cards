@@ -101,7 +101,7 @@ table > tfoot:not(:last-child) {
 .meatball-menu:hover .menu, .menu:hover {
     cursor: pointer;
     display: block;
-    transform: translate(63px, -25px);
+    transform: translate(62px, -25px);
 }
 
 .button-container {

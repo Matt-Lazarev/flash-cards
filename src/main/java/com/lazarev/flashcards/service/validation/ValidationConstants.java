@@ -17,7 +17,7 @@ public class ValidationConstants {
             "username", "Username must contain from 3 to 15 symbols, consists only of latin letters, digits, underscores and hyphens",
             "password", "Password must contain from 5 to 15 symbols, consists only of latin letters, digits, special symbols, at least one digit and capital letter",
             "email", "Email format is invalid",
-            "name", "Name should be up to 20 symbols",
+            "name", "Name should be up to 25 symbols",
             "description", "Description should be up to 40 symbols"
     );
 
@@ -45,7 +45,7 @@ public class ValidationConstants {
     }
 
     public static Map<String, String> isValidElementName(String elementName) {
-        if (elementName.length() < 20){
+        if (elementName.length() <= 25){
             return Map.of();
         }
         return Map.of("name", ERRORS.get("name"));
@@ -53,7 +53,7 @@ public class ValidationConstants {
 
 
     public static Map<String, String> isValidElementDescription(String elementDescription) {
-        if (elementDescription == null || elementDescription.length() < 40){
+        if (elementDescription == null || elementDescription.length() <= 40){
             return Map.of();
         }
         return Map.of("description", ERRORS.get("description"));
