@@ -10,23 +10,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Set;
 
 @Controller
-@RequestMapping("/groups")
+@RequestMapping("/domains/{domainId}/groups")
 public class GroupRouter {
 
     @GetMapping
-    public String getGroupsPage(Model model) {
+    public String getGroupsPage(@PathVariable Integer domainId, Model model) {
         PageAttributes pageAttributes = new PageAttributes()
                 .setMainScript("/js/groups.js")
                 .setTitle("Group Cards")
                 .setHeader("Groups")
                 .setElementType("group")
-                .setButtonText("New Group");
+                .setButtonText("New Group")
+                .setDefaultElementTypes(Set.of("group", "deck"));
         model.addAttribute("attributes", pageAttributes);
         return "elements";
     }
 
     @GetMapping("/new")
-    public String getNewGroupPage(Model model) {
+    public String getNewGroupPage(@PathVariable Integer domainId, Model model) {
         PageAttributes pageAttributes = new PageAttributes()
                 .setMainScript("/js/new-group.js")
                 .setTitle("New Group")
@@ -41,7 +42,7 @@ public class GroupRouter {
     }
 
     @GetMapping("/{id}/edit")
-    public String getEditGroupPage(@PathVariable Integer id, Model model) {
+    public String getEditGroupPage(@PathVariable Integer domainId, @PathVariable Integer id, Model model) {
         PageAttributes pageAttributes = new PageAttributes()
                 .setMainScript("/js/edit-group.js")
                 .setTitle("Edit Group")

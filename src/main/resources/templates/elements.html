@@ -21,11 +21,11 @@
 <header-component></header-component>
 
 <div id="container" class="container">
-    <h1 id="elementName">Groups</h1>
+    <h1 id="elementName">Domains</h1>
     <div class="element-container">
         <div class="button-container">
-            <button th:if="${attributes.elementType} == 'deck'" class="back-button" id="backButton">Back</button>
-            <button th:if="${attributes.elementType} == 'group'" class="dummy-button">Dummy</button>
+            <button th:if="${#sets.contains(attributes.defaultElementTypes, attributes.elementType)}" class="back-button" id="backButton">Back</button>
+            <button th:if="${attributes.elementType} == 'domain'" class="dummy-button">Dummy</button>
             <button class="add-element-button" id="addElementButton" th:text="${attributes.buttonText}"></button>
         </div>
 

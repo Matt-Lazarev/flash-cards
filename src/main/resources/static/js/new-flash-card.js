@@ -1,8 +1,9 @@
 import {urlRoute} from './http/url-routes.js';
 import {FlashCardHttpClient} from "./http/flash-card-http-client.js";
 
-const groupId = window.location.pathname.match(/\d+/g)[0];
-const deckId = window.location.pathname.match(/\d+/g)[1];
+const domainId = window.location.pathname.match(/\d+/g)[0];
+const groupId = window.location.pathname.match(/\d+/g)[1];
+const deckId = window.location.pathname.match(/\d+/g)[2];
 
 const flashCardHttpClient = new FlashCardHttpClient()
 
@@ -26,6 +27,6 @@ document.getElementById("newElementForm").addEventListener("submit", (event) => 
 
     flashCardHttpClient.saveFlashCard(body)
         .then(() => {
-            urlRoute(`/groups/${groupId}/decks/${deckId}/flash-cards`)
+            urlRoute(`/domains/${domainId}/groups/${groupId}/decks/${deckId}/flash-cards`)
         });
 });

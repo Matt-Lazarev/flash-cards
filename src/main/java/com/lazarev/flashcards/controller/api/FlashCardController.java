@@ -59,13 +59,13 @@ public class FlashCardController {
     public ResponseEntity<OperationResponse> updateFlashCard(@PathVariable Integer id,
                                                              @RequestBody FlashCardDto flashCardDto){
         flashCardService.updateFlashCard(id, flashCardDto);
-        return ResponseEntity.ok(new OperationResponse("Updating a new flash-card", "success"));
+        return ResponseEntity.ok(new OperationResponse("Updating a flash-card", "success"));
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("@userAccessChecker.checkFlashCard(#id)")
     public ResponseEntity<OperationResponse> deleteFlashCard(@PathVariable Integer id){
         flashCardService.deleteFlashCard(id);
-        return ResponseEntity.ok(new OperationResponse("Deleting a new flash-card", "success"));
+        return ResponseEntity.ok(new OperationResponse("Deleting a flash-card", "success"));
     }
 }

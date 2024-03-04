@@ -19,6 +19,10 @@ public class UserService {
                 );
     }
 
+    public boolean checkAccessToDomain(String username, Integer domainId) {
+        return userRepository.checkAccessToDomain(username, domainId);
+    }
+
     public boolean checkAccessToGroup(String username, Integer groupId) {
         return userRepository.checkAccessToGroup(username, groupId);
     }

@@ -3,8 +3,10 @@ import {addNewElementButton} from "./element/elements.js";
 import {urlRoute} from "./http/url-routes.js";
 import {openConfirmModalWindow} from "./confirm-modal-window.js";
 
-const groupId =  window.location.pathname.match(/(\d+)/g)[0];
-const deckId = window.location.pathname.match(/(\d+)/g)[1];
+const domainId =  window.location.pathname.match(/(\d+)/g)[0];
+const groupId =  window.location.pathname.match(/(\d+)/g)[1];
+const deckId = window.location.pathname.match(/(\d+)/g)[2];
+
 const flashCardHttpClient = new FlashCardHttpClient()
 
 const learnButton = document.getElementById('learnButton');
@@ -13,7 +15,7 @@ const tableBody = document.getElementById('tableBody');
 
 window.addEventListener("DOMContentLoaded",  () => {
     showFlashCards();
-    addNewElementButton(`/groups/${groupId}/decks/${deckId}/flash-cards/new`);
+    addNewElementButton(`/domains/${domainId}/groups/${groupId}/decks/${deckId}/flash-cards/new`);
 });
 
 function showFlashCards(){
@@ -87,7 +89,7 @@ function addFlashCardsInTable(flashCards){
 
         addActionButtonsListeners(
             flashCard.id,
-            `/groups/${groupId}/decks/${deckId}/flash-cards/${flashCard.id}/edit`,
+            `/domains/${domainId}/groups/${groupId}/decks/${deckId}/flash-cards/${flashCard.id}/edit`,
             (id) => deleteFlashCard(id)
         );
     });
@@ -114,9 +116,9 @@ function updateRowNumbers(){
 }
 
 learnButton.addEventListener('click', ()=> {
-    urlRoute(`/groups/${groupId}/decks/${deckId}/flash-cards/learn`)
+    urlRoute(`/domains/${domainId}/groups/${groupId}/decks/${deckId}/flash-cards/learn`)
 });
 
 backButton.addEventListener('click', () => {
-    urlRoute(`/groups/${groupId}/decks`);
+    urlRoute(`/domains/${domainId}/groups/${groupId}/decks`);
 });

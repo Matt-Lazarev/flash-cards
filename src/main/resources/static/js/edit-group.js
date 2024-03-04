@@ -1,7 +1,8 @@
 import {handleEditElementForm, loadContent} from "./element/edit-element.js";
 import {GroupHttpClient} from "./http/group-http-client.js";
 
-const groupId = window.location.pathname.match(/\d+/)[0];
+const domainId =  window.location.pathname.match(/(\d+)/g)[0];
+const groupId = window.location.pathname.match(/(\d+)/g)[1];
 const groupHttpClient = new GroupHttpClient()
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -11,5 +12,5 @@ window.addEventListener("DOMContentLoaded", () => {
 
 document.getElementById("newElementForm").addEventListener("submit", (event) => {
     const updateGroupRq = (body) => groupHttpClient.updateGroup(groupId, body);
-    handleEditElementForm(event, updateGroupRq,'/groups')
+    handleEditElementForm(event, updateGroupRq,`/domains/${domainId}/groups`)
 });

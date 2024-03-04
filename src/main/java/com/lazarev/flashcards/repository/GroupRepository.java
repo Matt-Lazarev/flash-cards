@@ -13,14 +13,14 @@ import java.util.Optional;
 public interface GroupRepository extends JpaRepository<Group, Integer> {
     @Query(
     """
-        select new GroupDto(g.id, g.name, g.description, size(g.decks))
-        from Group g where g.user.username = :username
+        select new GroupDto(g.id, g.name, g.description, g.domain.id, size(g.decks))
+        from Group g where g.domain.id = :domainId
     """)
-    List<GroupDto> findAllByUsername(String username, Sort sort);
+    List<GroupDto> findAllByDomainId(Integer domainId, Sort groupsSort);
 
     @Query(
     """
-        select new GroupDto(g.id, g.name, g.description, size(g.decks))
+        select new GroupDto(g.id, g.name, g.description, g.domain.id, size(g.decks))
         from Group g where g.id = :id
     """
     )

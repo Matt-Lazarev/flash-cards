@@ -1,12 +1,12 @@
 import {createHttpRequest} from "./http-client.js";
 
-const GROUP_API_URL = "/groups"
+const DOMAIN_API_URL = "/domains"
 
-export class GroupHttpClient {
+export class DomainHttpClient {
     constructor() {}
 
-    getAllGroups(domainId){
-        return createHttpRequest("GET", `${GROUP_API_URL}?domainId=${domainId}`)
+    getAllDomains(){
+        return createHttpRequest("GET", DOMAIN_API_URL)
             .then(data => {
                 console.log('Response:', data);
                 return data;
@@ -16,8 +16,8 @@ export class GroupHttpClient {
             });
     }
 
-    getGroupById(groupId){
-        return createHttpRequest("GET", `${GROUP_API_URL}/${groupId}`)
+    getDomainById(domainId){
+        return createHttpRequest("GET", `${DOMAIN_API_URL}/${domainId}`)
             .then(data => {
                 console.log('Response:', data);
                 return data;
@@ -27,8 +27,8 @@ export class GroupHttpClient {
             });
     }
 
-    saveGroup(body){
-        return createHttpRequest("POST", GROUP_API_URL, body)
+    saveDomain(body){
+        return createHttpRequest("POST", DOMAIN_API_URL, body)
             .then(data => {
                 console.log('Response:', data);
                 return data;
@@ -38,8 +38,8 @@ export class GroupHttpClient {
             });
     }
 
-    updateGroup(groupId, body){
-        return createHttpRequest("PUT", `${GROUP_API_URL}/${groupId}`, body)
+    updateDomain(domainId, body){
+        return createHttpRequest("PUT", `${DOMAIN_API_URL}/${domainId}`, body)
             .then(data => {
                 console.log('Response:', data);
                 return data;
@@ -49,8 +49,8 @@ export class GroupHttpClient {
             });
     }
 
-    deleteGroup(groupId){
-        return createHttpRequest("DELETE", `${GROUP_API_URL}/${groupId}`)
+    deleteDomain(domainId){
+        return createHttpRequest("DELETE", `${DOMAIN_API_URL}/${domainId}`)
             .then(data => {
                 console.log('Response:', data);
                 return data;
@@ -60,8 +60,9 @@ export class GroupHttpClient {
             });
     }
 
-    downloadGroup(deckId) {
-        return createHttpRequest("GET", `${GROUP_API_URL}/${groupId}/download`)
+    //TODO: add domain download support
+    downloadDomain(domainId) {
+        return createHttpRequest("GET", `${DOMAIN_API_URL}/${domainId}/download`)
             .then(data => {
                 console.log('Response:', data);
                 return data;

@@ -1,8 +1,10 @@
 import {FlashCardHttpClient} from "./http/flash-card-http-client.js";
 import {urlRoute} from "./http/url-routes.js";
 
-const groupId = window.location.pathname.match(/(\d+)/g)[0];
-const deckId = window.location.pathname.match(/(\d+)/g)[1];
+const domainId = window.location.pathname.match(/(\d+)/g)[0];
+const groupId = window.location.pathname.match(/(\d+)/g)[1];
+const deckId = window.location.pathname.match(/(\d+)/g)[2];
+
 const flashCardHttpClient = new FlashCardHttpClient()
 
 let flashCards = null;
@@ -110,7 +112,7 @@ prevButton.addEventListener('click', () => {
 });
 
 stopButton.addEventListener('click', () => {
-    urlRoute(`/groups/${groupId}/decks/${deckId}/flash-cards`)
+    urlRoute(`/domains/${domainId}/groups/${groupId}/decks/${deckId}/flash-cards`)
 });
 
 confirmButton.addEventListener('click', () => {

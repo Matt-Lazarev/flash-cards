@@ -10,17 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Set;
 
 @Controller
-@RequestMapping("/groups/{groupId}/decks/{deckId}/flash-cards")
+@RequestMapping("/domains/{domainId}/groups/{groupId}/decks/{deckId}/flash-cards")
 public class FlashCardRouter {
 
     @GetMapping
-    public String getFlashCardsPage(@PathVariable Integer groupId,
+    public String getFlashCardsPage(@PathVariable Integer domainId,
+                                    @PathVariable Integer groupId,
                                     @PathVariable Integer deckId) {
         return "flash-cards";
     }
 
     @GetMapping("/new")
-    public String getNewFlashCardPage(@PathVariable Integer groupId,
+    public String getNewFlashCardPage(@PathVariable Integer domainId,
+                                      @PathVariable Integer groupId,
                                       @PathVariable Integer deckId,
                                       Model model) {
         PageAttributes pageAttributes = new PageAttributes()
@@ -31,14 +33,15 @@ public class FlashCardRouter {
                 .setBackSideText("Back-side:")
                 .setExamplesText("Examples:")
                 .setSubmitText("Create flash-card")
-                .setDefaultElementTypes(Set.of("group", "deck#add", "deck#edit"));
+                .setDefaultElementTypes(Set.of("domain", "group", "deck#add", "deck#edit"));
 
         model.addAttribute("attributes", pageAttributes);
         return "new-element";
     }
 
     @GetMapping("/{id}/edit")
-    public String getEditFlashCardPage(@PathVariable Integer groupId,
+    public String getEditFlashCardPage(@PathVariable Integer domainId,
+                                       @PathVariable Integer groupId,
                                        @PathVariable Integer deckId,
                                        @PathVariable Integer id,
                                        Model model) {
@@ -50,14 +53,15 @@ public class FlashCardRouter {
                 .setBackSideText("Back-side:")
                 .setExamplesText("Examples:")
                 .setSubmitText("Edit flash-card")
-                .setDefaultElementTypes(Set.of("group", "deck#add", "deck#edit"));
+                .setDefaultElementTypes(Set.of("domain", "group", "deck#add", "deck#edit"));
 
         model.addAttribute("attributes", pageAttributes);
         return "new-element";
     }
 
     @GetMapping("/learn")
-    public String getLearnFlashCardsPage(@PathVariable Integer groupId,
+    public String getLearnFlashCardsPage(@PathVariable Integer domainId,
+                                         @PathVariable Integer groupId,
                                          @PathVariable Integer deckId) {
         return "learn";
     }

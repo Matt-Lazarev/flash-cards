@@ -2,34 +2,45 @@ import {GroupHttpClient} from "./http/group-http-client.js";
 import {addNewElementButton, showElements, showNoElementsMessage} from "./element/elements.js";
 import {downloadFile} from "./file/file-downloader.js";
 import {DocumentHttpClient} from "./http/document-http-client.js";
+import {urlRoute} from "./http/url-routes.js";
+
+const domainId = window.location.pathname.match(/\d+/)[0];
 
 const groupHttpClient = new GroupHttpClient();
 const documentHttpClient = new DocumentHttpClient();
 
 window.addEventListener("DOMContentLoaded",  () => {
     showGroups();
-    addNewElementButton("/groups/new");
+    addNewElementButton(`/domains/${domainId}/groups/new`);
 });
 
+const backButton = document.getElementById('backButton');
+backButton.addEventListener('click', () => {
+    urlRoute('/domains');
+});
+
+const elementName = document.getElementById("elementName");
 function showGroups(){
-    groupHttpClient.getAllGroups()
+    groupHttpClient.getAllGroups(domainId)
         .then(data => {
-            if(data.length === 0){
+            elementName.textContent = data.domainName;
+
+            if (data.groups.length === 0) {
                 showNoElementsMessage();
                 return;
             }
             const urls = {
-                clickElementUrl : '/groups/{id}/decks',
-                editElementUrl: '/groups/{id}/edit'
+                clickElementUrl : `/domains/${domainId}/groups/{id}/decks`,
+                editElementUrl: `/domains/${domainId}/groups/{id}/edit`
             }
-            data.forEach(group => {
+            data.groups.forEach(group => {
                 group.childElementsCount = group.decksCount;
                 group.childElementsName = 'decks';
             });
 
             const deleteElementAction = (id) => deleteGroup(id);
             const downloadDocumentAction = (id) => downloadGroup(id);
-            showElements(data, urls, deleteElementAction, downloadDocumentAction);
+            showElements(data.groups, urls, deleteElementAction, downloadDocumentAction);
         })
 }
 

@@ -2,6 +2,7 @@ package com.lazarev.flashcards.controller.api;
 
 import com.lazarev.flashcards.annotation.Validate;
 import com.lazarev.flashcards.dto.common.OperationResponse;
+import com.lazarev.flashcards.dto.element.DomainGroupsDto;
 import com.lazarev.flashcards.dto.element.GroupDto;
 import com.lazarev.flashcards.service.GroupService;
 import com.lazarev.flashcards.service.validation.GroupDtoValidator;
@@ -21,9 +22,8 @@ public class GroupController {
     private final GroupService groupService;
 
     @GetMapping
-    public ResponseEntity<List<GroupDto>> getAllGroups(Authentication authentication){
-        String username = authentication.getName();
-        return ResponseEntity.ok(groupService.getAllGroups(username));
+    public ResponseEntity<DomainGroupsDto> getAllGroups(@RequestParam Integer domainId){
+        return ResponseEntity.ok(groupService.getAllGroups(domainId));
     }
 
     @GetMapping("/{id}")
@@ -34,9 +34,8 @@ public class GroupController {
 
     @PostMapping
     @Validate(GroupDtoValidator.class)
-    public ResponseEntity<?> saveGroup(@RequestBody GroupDto groupDto, Authentication authentication){
-        String username = authentication.getName();
-        groupService.saveGroup(groupDto, username);
+    public ResponseEntity<?> saveGroup(@RequestBody GroupDto groupDto){
+        groupService.saveGroup(groupDto);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(new OperationResponse("Saving a new group", "success"));
@@ -49,7 +48,7 @@ public class GroupController {
                                          @RequestBody GroupDto groupDto){
         groupService.updateGroup(id, groupDto);
         return ResponseEntity
-                .ok(new OperationResponse("Updating a new group", "success"));
+                .ok(new OperationResponse("Updating a group", "success"));
     }
 
     @DeleteMapping("/{id}")

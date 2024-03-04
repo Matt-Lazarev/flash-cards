@@ -1,5 +1,7 @@
 package com.lazarev.flashcards.service;
 
+import com.lazarev.flashcards.dto.element.DomainDto;
+import com.lazarev.flashcards.dto.element.DomainGroupsDto;
 import com.lazarev.flashcards.dto.element.GroupDto;
 import com.lazarev.flashcards.entity.ApplicationUser;
 import com.lazarev.flashcards.entity.Deck;
@@ -21,10 +23,13 @@ public class GroupService {
 
     private final GroupRepository groupRepository;
     private final GroupMapper groupMapper;
-    private final UserService userService;
+    private final DomainService domainService;
 
-    public List<GroupDto> getAllGroups(String username){
-        return groupRepository.findAllByUsername(username, GROUPS_SORT);
+    public DomainGroupsDto getAllGroups(Integer domainId){
+        DomainDto domain = domainService.getDomainById(domainId);
+        List<GroupDto> groups = groupRepository.findAllByDomainId(domainId, GROUPS_SORT);
+
+        return new DomainGroupsDto(domain.name(), groups);
     }
 
     public GroupDto getGroupById(Integer id) {
@@ -35,10 +40,10 @@ public class GroupService {
     }
 
     @Transactional
-    public void saveGroup(GroupDto groupDto, String username){
-        ApplicationUser user = userService.getUserByUsername(username);
+    public void saveGroup(GroupDto groupDto){
         Group group = groupMapper.toGroup(groupDto);
-        group.setUser(user);
+
+        domainService.addGroupToDomain(groupDto.domainId(), group);
 
         groupRepository.save(group);
     }

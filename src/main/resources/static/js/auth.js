@@ -42,7 +42,7 @@ loginForm?.addEventListener("submit", (event) => {
                 window.localStorage.setItem('token', res.token);
                 window.localStorage.setItem('username', res.username);
                 window.localStorage.setItem('auth', 'true');
-                urlRoute('/groups');
+                urlRoute('/domains');
             } else {
                 showValidationErrors(res);
             }

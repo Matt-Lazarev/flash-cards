@@ -12,8 +12,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "groups")
-public class Group {
+@Table(name = "domains")
+public class Domain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -25,15 +25,15 @@ public class Group {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Deck> decks = new ArrayList<>();
+    @OneToMany(mappedBy = "domain", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Group> groups = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "domain_id", referencedColumnName = "id")
-    private Domain domain;
+    @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private ApplicationUser user;
 
-    public void addDeck(Deck deck){
-        deck.setGroup(this);
-        this.decks.add(deck);
+    public void addGroup(Group group) {
+        group.setDomain(this);
+        this.groups.add(group);
     }
 }

@@ -4,7 +4,9 @@ import {DocumentHttpClient} from "./http/document-http-client.js";
 import {handleNewElementForm} from "./element/new-element.js";
 import {showValidationErrors} from "./element/element-validator.js";
 
-const groupId = window.location.pathname.match(/\d+/)[0];
+const domainId =  window.location.pathname.match(/(\d+)/g)[0];
+const groupId = window.location.pathname.match(/(\d+)/g)[1];
+
 const deckHttpClient = new DeckHttpClient();
 const documentHttpClient = new DocumentHttpClient();
 
@@ -26,7 +28,7 @@ document.getElementById('newElementForm').addEventListener('submit', (event) => 
         documentHttpClient.parseDocument(formData)
             .then((res) => {
                 if(res.valid){
-                    urlRoute(`/groups/${groupId}/decks`)
+                    urlRoute(`/domains/${domainId}/groups/${groupId}/decks`)
                 }
                 else {
                     showValidationErrors(res);
@@ -38,7 +40,7 @@ document.getElementById('newElementForm').addEventListener('submit', (event) => 
             body.groupId = groupId;
             return deckHttpClient.saveDeck(body);
         }
-        handleNewElementForm(event, saveDeckRq,`/groups/${groupId}/decks`)
+        handleNewElementForm(event, saveDeckRq,`/domains/${domainId}/groups/${groupId}/decks`)
     }
 });
 

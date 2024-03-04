@@ -10,23 +10,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Set;
 
 @Controller
-@RequestMapping("/groups/{groupId}/decks")
+@RequestMapping("/domains/{domainId}/groups/{groupId}/decks")
 public class DeckRouter {
 
     @GetMapping
-    public String getDecksPage(@PathVariable String groupId, Model model) {
+    public String getDecksPage(@PathVariable Integer domainId, @PathVariable String groupId, Model model) {
         PageAttributes pageAttributes = new PageAttributes()
                 .setMainScript("/js/decks.js")
                 .setTitle("Decks Cards")
                 .setHeader("Decks")
                 .setElementType("deck")
-                .setButtonText("New Deck");
+                .setButtonText("New Deck")
+                .setDefaultElementTypes(Set.of("group", "deck"));
         model.addAttribute("attributes", pageAttributes);
         return "elements";
     }
 
     @GetMapping("/new")
-    public String getNewDeckPage(@PathVariable String groupId, Model model) {
+    public String getNewDeckPage(@PathVariable Integer domainId, @PathVariable Integer groupId, Model model) {
         PageAttributes pageAttributes = new PageAttributes()
                 .setMainScript("/js/new-deck.js")
                 .setTitle("New Deck")
@@ -42,9 +43,10 @@ public class DeckRouter {
     }
 
     @GetMapping("/{deckId}/edit")
-    public String getEditDeckPage(@PathVariable Integer groupId,
-                                   @PathVariable String deckId,
-                                   Model model) {
+    public String getEditDeckPage(@PathVariable Integer domainId,
+                                  @PathVariable Integer groupId,
+                                  @PathVariable Integer deckId,
+                                  Model model) {
         PageAttributes pageAttributes = new PageAttributes()
                 .setMainScript("/js/edit-deck.js")
                 .setTitle("Edit Deck")

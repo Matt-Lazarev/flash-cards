@@ -10,6 +10,11 @@ import org.springframework.stereotype.Component;
 public class UserAccessChecker {
     private final UserService userService;
 
+    public boolean checkDomain(Integer domainId) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userService.checkAccessToDomain(username, domainId);
+    }
+
     public boolean checkGroup(Integer groupId) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return userService.checkAccessToGroup(username, groupId);

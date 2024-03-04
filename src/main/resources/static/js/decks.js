@@ -4,18 +4,20 @@ import {urlRoute} from "./http/url-routes.js";
 import {downloadFile} from "./file/file-downloader.js";
 import {DocumentHttpClient} from "./http/document-http-client.js";
 
-const groupId = window.location.pathname.match(/\d+/)[0];
+const domainId =  window.location.pathname.match(/(\d+)/g)[0];
+const groupId = window.location.pathname.match(/(\d+)/g)[1];
+
 const deckHttpClient = new DeckHttpClient()
 const documentHttpClient = new DocumentHttpClient()
 
 window.addEventListener("DOMContentLoaded", () => {
     showDecks();
-    addNewElementButton(`/groups/${groupId}/decks/new`);
+    addNewElementButton(`/domains/${domainId}/groups/${groupId}/decks/new`);
 });
 
 const backButton = document.getElementById('backButton');
 backButton.addEventListener('click', () => {
-    urlRoute('/groups');
+    urlRoute(`/domains/${domainId}/groups`);
 });
 
 const elementName = document.getElementById("elementName");
@@ -30,8 +32,8 @@ function showDecks() {
             }
 
             const urls = {
-                clickElementUrl: `/groups/${groupId}/decks/{id}/flash-cards`,
-                editElementUrl: `/groups/${groupId}/decks/{id}/edit`
+                clickElementUrl: `/domains/${domainId}/groups/${groupId}/decks/{id}/flash-cards`,
+                editElementUrl: `/domains/${domainId}/groups/${groupId}/decks/{id}/edit`
             }
 
             data.decks.forEach(deck => {

@@ -47,7 +47,7 @@ public class DeckController {
                                          @RequestBody DeckDto groupDto){
         deckService.updateDeck(id, groupDto);
         return ResponseEntity
-                .ok(new OperationResponse("Updating a new group", "success"));
+                .ok(new OperationResponse("Updating a deck", "success"));
     }
 
     @DeleteMapping("/{id}")

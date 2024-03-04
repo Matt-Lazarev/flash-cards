@@ -1,9 +1,8 @@
 package com.lazarev.flashcards.dto.element;
 
-public record GroupDto (
+public record DomainDto(
         Integer id,
         String name,
         String description,
-        Integer domainId,
-        Integer decksCount
+        Integer groupsCount
 ) {}

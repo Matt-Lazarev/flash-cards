@@ -72,7 +72,7 @@ export function addNewElementButton(url) {
 
 export function showNoElementsMessage() {
     const header = document.createElement("h3");
-    header.textContent = 'There are no elements, use button above to add';
+    header.textContent = 'There are no elements, use a button above to add';
     elementList.appendChild(header);
 }
 
